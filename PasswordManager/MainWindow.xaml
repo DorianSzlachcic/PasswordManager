@@ -8,86 +8,77 @@
         Title="MainWindow" Height="500" Width="800">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <!--Adding account form-->
-                <Border Grid.Column="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                    <StackPanel Background="LightGray" Margin="4">
-                        <Label HorizontalAlignment="Center" FontSize="16">Name</Label>
-                        <TextBox Margin="4" Text="{Binding Name, Mode=TwoWay}"></TextBox>
-                        <Label HorizontalAlignment="Center" FontSize="16">Login</Label>
-                        <TextBox Margin="4" Text="{Binding Login, Mode=TwoWay}"></TextBox>
-                        <Label HorizontalAlignment="Center" FontSize="16">Password</Label>
-                        <TextBox Margin="4" Text="{Binding Password, Mode=TwoWay}"></TextBox>
-
-                        <Button Height="20" Margin="5" FontSize="14" Click="Button_Click">Add</Button>
-                    </StackPanel>
+        <!--Menu-->
+        <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel>
+                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock FontSize="25" Margin="5">Start</TextBlock>
                 </Border>
-                
-                <!--Generator form-->
-                <Border Grid.Column="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                    <StackPanel Background="LightGray" Margin="4">
-                        <Label HorizontalAlignment="Center" FontSize="18">Generator</Label>
-                        <TextBox IsReadOnly="True" Text="{Binding GeneratedPassword}" TextAlignment="Center" Background="White" Margin="4"/>
-                        <Button FontSize="14" Margin="10" Click="Button_Click_1">Generate</Button>
-                    </StackPanel>
+                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock FontSize="25" Margin="5">Accounts</TextBlock>
                 </Border>
+            </StackPanel>
+        </Border>
 
-            </Grid>
-            
-            <!--Accounts list-->
-            <Border Grid.Row="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                <ListBox ItemsSource="{Binding Accounts}" HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border Height="40" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
+        <!--Adding account form-->
+        <Border Grid.Column="1" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+            <StackPanel Background="LightGray" Margin="4">
+                <Label HorizontalAlignment="Center" FontSize="16">Name</Label>
+                <TextBox Margin="4" Text="{Binding Name, Mode=TwoWay}"></TextBox>
+                <Label HorizontalAlignment="Center" FontSize="16">Login</Label>
+                <TextBox Margin="4" Text="{Binding Login, Mode=TwoWay}"></TextBox>
+                <Label HorizontalAlignment="Center" FontSize="16">Password</Label>
+                <TextBox Margin="4" Text="{Binding Password, Mode=TwoWay}"></TextBox>
 
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}" 
+                <Button Height="20" Margin="5" FontSize="14" Click="Button_Click">Add</Button>
+            </StackPanel>
+        </Border>
+
+        <!--Generator form-->
+        <Border Grid.Column="2" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+            <StackPanel Background="LightGray" Margin="4">
+                <Label HorizontalAlignment="Center" FontSize="18">Generator</Label>
+                <TextBox IsReadOnly="True" Text="{Binding GeneratedPassword}" TextAlignment="Center" Background="White" Margin="4"/>
+                <Button FontSize="14" Margin="10" Click="Button_Click_1">Generate</Button>
+            </StackPanel>
+        </Border>
+
+        <!--Accounts list-->
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+            <ListBox ItemsSource="{Binding Accounts}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="40" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" 
                                                VerticalAlignment="Center" 
                                                Margin="4"
                                                FontSize="14"/>
-                                    <Button Grid.Column="1" Margin="4">Login</Button>
-                                    <Button Grid.Column="2" Margin="4">Hasło</Button>
-                                    <Button Grid.Column="3" Margin="4">Edit</Button>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Border>
-        </Grid>
-        
-        <!--Menu-->
-        <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0">
-            <StackPanel>
-                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock FontSize="25">Start</TextBlock>
-                </Border>
-                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock FontSize="25">Accounts</TextBlock>
-                </Border>
-            </StackPanel>
+                                <Button Grid.Column="1" Margin="4">Login</Button>
+                                <Button Grid.Column="2" Margin="4">Hasło</Button>
+                                <Button Grid.Column="3" Margin="4">Edit</Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Border>
     </Grid>
 </Window>
