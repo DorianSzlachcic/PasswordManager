@@ -11,24 +11,17 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
     public class MainWindowViewModel :INotifyPropertyChanged
     {
-        private string? accountsList;
+        private List<Account>? accountsList;
         private string? password;
         private string? login;
         private string? name;
         private string? generatedPassword;
 
         private JsonService jsonService;
-        private GeneratorService generatorService;
-        private SecurityService securityService;
 
         private void updateAccounts()
         {
-            List<Account> list = jsonService.LoadFromFile();
-            Accounts = "";
-            foreach (Account acc in list)
-            {
-                Accounts += "Name: " + acc.Name + " Login: " + acc.Login + " Password: " + securityService.DecryptAES(acc.Password) + "\n";
-            }
+            Accounts = jsonService.LoadFromFile();
         }
 
         protected void OnPropertyChanged(string propertyName)
@@ -39,8 +32,6 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
         public MainWindowViewModel()
         {
             jsonService = new JsonService("accounts.json");
-            generatorService = new GeneratorService();
-            securityService = new SecurityService();
             updateAccounts();
         }
         public void NotifyAddButtonClicked()
@@ -48,7 +39,7 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
             if((Name != "" && Name != null) && (Login != "" && Login != null) 
                 && (Password != "" && Password != null))
             {
-                jsonService.WriteToFile(new Account(Name, Login, securityService.EncryptAES(Password)));
+                jsonService.WriteToFile(new Account(Name, Login, SecurityService.EncryptAES(Password)));
                 Name = null;
                 Login = null;
                 Password = null;
@@ -58,7 +49,7 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
 
         public void NotifyGenerateButtonClicked()
         {
-            this.GeneratedPassword = generatorService.Generate();
+            this.GeneratedPassword = GeneratorService.Generate();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -91,7 +82,7 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
                 OnPropertyChanged(nameof (Password));
             } 
         }
-        public string? Accounts
+        public List<Account>? Accounts
         {
             get => accountsList;
             set { 

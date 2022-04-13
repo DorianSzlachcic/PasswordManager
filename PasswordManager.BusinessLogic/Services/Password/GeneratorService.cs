@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.BusinessLogic.Services.Password
 {
-    internal class GeneratorService
+    internal static class GeneratorService
     {
-        private bool upperCase = true, lowerCase = true, specialChars = true, numbers = true;
-        private int lenght = 10;
+        private static bool upperCase = true, lowerCase = true, specialChars = true, numbers = true;
+        private static int lenght = 10;
 
-        public string Generate()
+        public static string Generate()
         {
             string charSet = getCharSet();
 
@@ -27,7 +27,7 @@ namespace PasswordManager.BusinessLogic.Services.Password
             return pass;
         }
 
-        private string getCharSet()
+        private static string getCharSet()
         {
             string charSet = "";
 

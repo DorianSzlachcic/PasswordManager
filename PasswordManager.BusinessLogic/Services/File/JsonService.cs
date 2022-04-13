@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PasswordManager.BusinessLogic.Services.Password;
 
 namespace PasswordManager.BusinessLogic.Services.File
 {
@@ -19,6 +20,11 @@ namespace PasswordManager.BusinessLogic.Services.File
             Name = name;
             Login = login;
             Password = encryptedPassword;
+        }
+
+        public override string ToString()
+        {
+            return Name + " " + Login + " " +  SecurityService.DecryptAES(Password);
         }
     }
 

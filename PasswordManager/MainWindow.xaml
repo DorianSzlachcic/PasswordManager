@@ -51,7 +51,9 @@
             
             <!--Accounts list-->
             <Border Grid.Row="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                <TextBox Text="{Binding Accounts,Mode=OneWay}" IsReadOnly="True" Margin="4" Background="LightGray"/>
+                <ListBox ItemsSource="{Binding Accounts}">
+                    
+                </ListBox>
             </Border>
         </Grid>
         
@@ -60,6 +62,9 @@
             <StackPanel>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
                     <TextBlock FontSize="30">Start</TextBlock>
+                </Border>
+                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock FontSize="30">Accounts</TextBlock>
                 </Border>
             </StackPanel>
         </Border>
