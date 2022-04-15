@@ -9,7 +9,7 @@ using PasswordManager.BusinessLogic.Services.Password;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
-    public class MainWindowViewModel :INotifyPropertyChanged
+    public class StartViewModel :INotifyPropertyChanged
     {
         private List<Account>? accountsList;
         private string? password;
@@ -29,7 +29,7 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public MainWindowViewModel()
+        public StartViewModel()
         {
             jsonService = new JsonService("accounts.json");
             updateAccounts();

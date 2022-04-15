@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="PasswordManager.Views.Accounts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PasswordManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <!--Accounts list-->
+        <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+            <ListBox ItemsSource="{Binding Accounts}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="40" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" 
+                                               VerticalAlignment="Center" 
+                                               Margin="4"
+                                               FontSize="14"/>
+                                <Button Grid.Column="1" Margin="4">Login</Button>
+                                <Button Grid.Column="2" Margin="4">Hasło</Button>
+                                <Button Grid.Column="3" Margin="4">Edit</Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
+</UserControl>

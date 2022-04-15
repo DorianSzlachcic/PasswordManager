@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordManager"
+        xmlns:views="clr-namespace:PasswordManager.Views"
+        xmlns:viewmodels="clr-namespace:PasswordManager.BusinessLogic.ViewModels.Main;assembly=PasswordManager.BusinessLogic"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
-
+    <Window.Resources>
+        <DataTemplate x:Name="startView" DataType="{x:Type viewmodels:StartViewModel}">
+            <views:StartView/>
+        </DataTemplate>
+        <DataTemplate x:Name="accountsView" DataType="{x:Type viewmodels:AccountsViewModel}">
+            <views:Accounts/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -22,63 +31,15 @@
         <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0" Grid.RowSpan="2">
             <StackPanel>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock FontSize="25" Margin="5">Start</TextBlock>
+                    <Button FontSize="25" Click="Button_Click" >Start</Button>
                 </Border>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <TextBlock FontSize="25" Margin="5">Accounts</TextBlock>
+                    <Button FontSize="25" Click="Button_Click_1">Accounts</Button>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!--Adding account form-->
-        <Border Grid.Column="1" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-            <StackPanel Background="LightGray" Margin="4">
-                <Label HorizontalAlignment="Center" FontSize="16">Name</Label>
-                <TextBox Margin="4" Text="{Binding Name, Mode=TwoWay}"></TextBox>
-                <Label HorizontalAlignment="Center" FontSize="16">Login</Label>
-                <TextBox Margin="4" Text="{Binding Login, Mode=TwoWay}"></TextBox>
-                <Label HorizontalAlignment="Center" FontSize="16">Password</Label>
-                <TextBox Margin="4" Text="{Binding Password, Mode=TwoWay}"></TextBox>
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="{Binding}"/>
 
-                <Button Height="20" Margin="5" FontSize="14" Click="Button_Click">Add</Button>
-            </StackPanel>
-        </Border>
-
-        <!--Generator form-->
-        <Border Grid.Column="2" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-            <StackPanel Background="LightGray" Margin="4">
-                <Label HorizontalAlignment="Center" FontSize="18">Generator</Label>
-                <TextBox IsReadOnly="True" Text="{Binding GeneratedPassword}" TextAlignment="Center" Background="White" Margin="4"/>
-                <Button FontSize="14" Margin="10" Click="Button_Click_1">Generate</Button>
-            </StackPanel>
-        </Border>
-
-        <!--Accounts list-->
-        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-            <ListBox ItemsSource="{Binding Accounts}" HorizontalContentAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border Height="40" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="{Binding Name}" 
-                                               VerticalAlignment="Center" 
-                                               Margin="4"
-                                               FontSize="14"/>
-                                <Button Grid.Column="1" Margin="4">Login</Button>
-                                <Button Grid.Column="2" Margin="4">Hasło</Button>
-                                <Button Grid.Column="3" Margin="4">Edit</Button>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordManager.BusinessLogic.ViewModels.Main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,30 +13,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PasswordManager.BusinessLogic.ViewModels.Main;
 
-namespace PasswordManager
+namespace PasswordManager.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy StartView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartView : UserControl
     {
+        private StartViewModel viewModel;
 
-        public MainWindow()
+        public StartView()
         {
             InitializeComponent();
-            DataContext = new StartViewModel();
+            viewModel = new StartViewModel();
+            DataContext = viewModel;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new StartViewModel();
+            viewModel.NotifyAddButtonClicked();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            DataContext = new AccountsViewModel();
+            viewModel.NotifyGenerateButtonClicked();
         }
     }
 }
