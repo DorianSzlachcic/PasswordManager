@@ -17,28 +17,27 @@ using System.Windows.Shapes;
 namespace PasswordManager.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy StartView.xaml
+    /// Logika interakcji dla klasy AddView.xaml
     /// </summary>
-    public partial class StartView : UserControl
+    public partial class AddView : UserControl
     {
-        private StartViewModel viewModel;
-
-        public StartView()
+        private AddViewModel viewModel;
+        public AddView()
         {
             InitializeComponent();
-            viewModel = new StartViewModel();
+            viewModel = new AddViewModel();
             DataContext = viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
-            parentWindow.ChangeViewToAddAccount();
+            viewModel.NotifyAddButtonClicked();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            viewModel.NotifyGenerateButtonClicked();
+            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
+            parentWindow.ChangeViewToStartView();
         }
     }
 }

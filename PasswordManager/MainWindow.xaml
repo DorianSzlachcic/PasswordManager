@@ -13,7 +13,10 @@
             <views:StartView/>
         </DataTemplate>
         <DataTemplate x:Name="accountsView" DataType="{x:Type viewmodels:AccountsViewModel}">
-            <views:Accounts/>
+            <views:AccountsView/>
+        </DataTemplate>
+        <DataTemplate x:Name="addView" DataType="{x:Type viewmodels:AddViewModel}">
+            <views:AddView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

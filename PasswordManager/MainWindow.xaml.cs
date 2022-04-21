@@ -27,15 +27,25 @@ namespace PasswordManager
             InitializeComponent();
             DataContext = new StartViewModel();
         }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new StartViewModel();
+            ChangeViewToStartView();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             DataContext = new AccountsViewModel();
+        }
+
+        internal void ChangeViewToAddAccount()
+        {
+            DataContext = new AddViewModel();
+        }
+
+        internal void ChangeViewToStartView()
+        {
+            DataContext = new StartViewModel();
         }
     }
 }

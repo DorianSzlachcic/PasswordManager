@@ -10,6 +10,7 @@ namespace PasswordManager.BusinessLogic.Services.Password
     internal static class SecurityService
     {
         private static string key = "A!9HHhi%XjjYY4YP2@Nob009X";
+
         public static string EncryptAES(string text)
         {
             if (text == null || text.Length <= 0)

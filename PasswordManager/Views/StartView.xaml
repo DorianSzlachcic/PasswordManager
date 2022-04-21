@@ -17,16 +17,7 @@
         </Grid.ColumnDefinitions>        
         <!--Adding account form-->
         <Border Grid.Column="0" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-            <StackPanel Background="LightGray" Margin="4">
-                <Label HorizontalAlignment="Center" FontSize="16">Name</Label>
-                <TextBox Margin="4" Text="{Binding Name, Mode=TwoWay}"></TextBox>
-                <Label HorizontalAlignment="Center" FontSize="16">Login</Label>
-                <TextBox Margin="4" Text="{Binding Login, Mode=TwoWay}"></TextBox>
-                <Label HorizontalAlignment="Center" FontSize="16">Password</Label>
-                <TextBox Margin="4" Text="{Binding Password, Mode=TwoWay}"></TextBox>
-
-                <Button Height="20" Margin="5" FontSize="14" Click="Button_Click">Add</Button>
-            </StackPanel>
+            <Button FontSize="30" Click="Button_Click">Add Account</Button>
         </Border>
 
         <!--Generator form-->

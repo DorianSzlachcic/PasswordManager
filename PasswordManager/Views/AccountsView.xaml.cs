@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PasswordManager.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy Accounts.xaml
+    /// Logika interakcji dla klasy AccountsView.xaml
     /// </summary>
-    public partial class Accounts : UserControl
+    public partial class AccountsView : UserControl
     {
-        public Accounts()
+        public AccountsView()
         {
             InitializeComponent();
         }

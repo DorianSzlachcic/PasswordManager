@@ -23,13 +23,14 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public List<Account>? Accounts { 
+        public List<Account>? Accounts {
             get { return accounts; }
             set 
             {
                 accounts = value;
                 OnPropertyChanged(nameof(Accounts));
-            } }
+            } 
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }
