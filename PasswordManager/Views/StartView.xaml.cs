@@ -21,24 +21,9 @@ namespace PasswordManager.Views
     /// </summary>
     public partial class StartView : UserControl
     {
-        private StartViewModel viewModel;
-
         public StartView()
         {
             InitializeComponent();
-            viewModel = new StartViewModel();
-            DataContext = viewModel;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
-            parentWindow.ChangeViewToAddAccount();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            viewModel.NotifyGenerateButtonClicked();
         }
     }
 }

@@ -5,29 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PasswordManager.BusinessLogic.Services.Password;
+using PasswordManager.BusinessLogic.Models;
 
 namespace PasswordManager.BusinessLogic.Services.File
 {
-    public class Account
-    {
-        public string Name { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-
-        public Account(string name, string login, string encryptedPassword)
-        {
-            Name = name;
-            Login = login;
-            Password = encryptedPassword;
-        }
-
-        public override string ToString()
-        {
-            return Name + " " + Login + " " +  SecurityService.DecryptAES(Password);
-        }
-    }
-
     internal class JsonService
     {
         private string path;

@@ -8,41 +8,37 @@
         xmlns:viewmodels="clr-namespace:PasswordManager.BusinessLogic.ViewModels.Main;assembly=PasswordManager.BusinessLogic"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
-    <Window.Resources>
-        <DataTemplate x:Name="startView" DataType="{x:Type viewmodels:StartViewModel}">
-            <views:StartView/>
-        </DataTemplate>
-        <DataTemplate x:Name="accountsView" DataType="{x:Type viewmodels:AccountsViewModel}">
-            <views:AccountsView/>
-        </DataTemplate>
-        <DataTemplate x:Name="addView" DataType="{x:Type viewmodels:AddViewModel}">
-            <views:AddView/>
-        </DataTemplate>
-    </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <!--Menu-->
-        <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0" Grid.RowSpan="2">
+        <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0">
             <StackPanel>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <Button FontSize="25" Click="Button_Click" >Start</Button>
+                    <Button FontSize="25" Command="{Binding ChangeToStartViewCommand}">Start</Button>
                 </Border>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <Button FontSize="25" Click="Button_Click_1">Accounts</Button>
+                    <Button FontSize="25" Command="{Binding ChangeToAccountsViewCommand}">Accounts</Button>
                 </Border>
             </StackPanel>
         </Border>
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="{Binding}"/>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentScreen}">
+            <ContentControl.Resources>
+                <DataTemplate x:Name="startView" DataType="{x:Type viewmodels:StartViewModel}">
+                    <views:StartView/>
+                </DataTemplate>
+                <DataTemplate x:Name="accountsView" DataType="{x:Type viewmodels:AccountsViewModel}">
+                    <views:AccountsView/>
+                </DataTemplate>
+                <DataTemplate x:Name="addView" DataType="{x:Type viewmodels:AddViewModel}">
+                    <views:AddView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
 
     </Grid>
 </Window>

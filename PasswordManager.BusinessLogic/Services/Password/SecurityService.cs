@@ -7,11 +7,11 @@ using System.Security.Cryptography;
 
 namespace PasswordManager.BusinessLogic.Services.Password
 {
-    internal static class SecurityService
+    internal class SecurityService
     {
         private static string key = "A!9HHhi%XjjYY4YP2@Nob009X";
 
-        public static string EncryptAES(string text)
+        public string EncryptAES(string text)
         {
             if (text == null || text.Length <= 0)
                 return "";
@@ -36,7 +36,7 @@ namespace PasswordManager.BusinessLogic.Services.Password
             }
         }
 
-        public static string DecryptAES(string encrypted)
+        public string DecryptAES(string encrypted)
         {
             if(encrypted == null || encrypted.Length <= 0)
                 return "";

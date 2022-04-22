@@ -21,31 +21,14 @@ namespace PasswordManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new StartViewModel();
+            viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
         }
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeViewToStartView();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            DataContext = new AccountsViewModel();
-        }
-
-        internal void ChangeViewToAddAccount()
-        {
-            DataContext = new AddViewModel();
-        }
-
-        internal void ChangeViewToStartView()
-        {
-            DataContext = new StartViewModel();
-        }
+       
     }
 }

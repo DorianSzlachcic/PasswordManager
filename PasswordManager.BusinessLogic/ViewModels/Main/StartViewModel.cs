@@ -6,57 +6,60 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using PasswordManager.BusinessLogic.Services.File;
 using PasswordManager.BusinessLogic.Services.Password;
+using PasswordManager.BusinessLogic.Models;
+using System.Windows.Input;
+using Spooksoft.VisualStateManager.Commands;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
-    public class StartViewModel :INotifyPropertyChanged
+    public class StartViewModel : BaseScreenViewModel
     {
         private List<Account>? accountsList;
         private string? generatedPassword;
 
         private JsonService jsonService;
+        private GeneratorService generatorService;
+
+        private ICommand changeToAddViewCommand;
+        private ICommand generatorCommand;
 
         private void updateAccounts()
         {
             Accounts = jsonService.LoadFromFile();
         }
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public StartViewModel()
+        public StartViewModel(IChangeScreenHandler handler) :base(handler)
         {
             jsonService = new JsonService("accounts.json");
+            generatorService = new GeneratorService();
+
+            GeneratorCommand = new AppCommand(obj => GeneratedPassword = generatorService.Generate());
+            ChangeToAddViewCommand = new AppCommand(obj => changeScreenHandler.ChangeScreenToAddView());
+
             updateAccounts();
         }
 
-        public void NotifyGenerateButtonClicked()
-        {
-            this.GeneratedPassword = GeneratorService.Generate();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        //Public Variables
-      
         public List<Account>? Accounts
         {
             get => accountsList;
-            set { 
-                accountsList = value;
-                OnPropertyChanged(nameof(Accounts));
-            }
+            set => Set(ref accountsList, value);
         }
         public string? GeneratedPassword
         {
             get => generatedPassword;
-            set
-            {
-                this.generatedPassword = value;
-                OnPropertyChanged(nameof(GeneratedPassword));
-            }
+            set => Set(ref generatedPassword, value);
+        }
+
+        public ICommand ChangeToAddViewCommand
+        {
+            get => changeToAddViewCommand;
+            set => Set(ref changeToAddViewCommand, value);
+        }
+
+        public ICommand GeneratorCommand
+        {
+            get => generatorCommand;    
+            set => Set(ref generatorCommand, value);
         }
     }
 }

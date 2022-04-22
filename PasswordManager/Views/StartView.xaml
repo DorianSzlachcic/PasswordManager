@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>        
         <!--Adding account form-->
         <Border Grid.Column="0" Grid.Row="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
-            <Button FontSize="30" Click="Button_Click">Add Account</Button>
+            <Button FontSize="30" Command="{Binding ChangeToAddViewCommand}">Add Account</Button>
         </Border>
 
         <!--Generator form-->
@@ -25,7 +25,7 @@
             <StackPanel Background="LightGray" Margin="4">
                 <Label HorizontalAlignment="Center" FontSize="18">Generator</Label>
                 <TextBox IsReadOnly="True" Text="{Binding GeneratedPassword}" TextAlignment="Center" Background="White" Margin="4"/>
-                <Button FontSize="14" Margin="10" Click="Button_Click_1">Generate</Button>
+                <Button FontSize="14" Margin="10" Command="{Binding GeneratorCommand}">Generate</Button>
             </StackPanel>
         </Border>
 

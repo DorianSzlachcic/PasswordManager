@@ -1,4 +1,5 @@
 ﻿using PasswordManager.BusinessLogic.Services.File;
+using PasswordManager.BusinessLogic.Models;
 using PasswordManager.BusinessLogic.Services.Password;
 using System;
 using System.Collections.Generic;
@@ -9,64 +10,47 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
-    public class AddViewModel :INotifyPropertyChanged
+    public class AddViewModel : BaseScreenViewModel
     {
         private string? password;
         private string? login;
         private string? name;
 
         private JsonService jsonService;
+        private SecurityService securityService;
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public AddViewModel()
+        public AddViewModel(IChangeScreenHandler handler) : base(handler)
         {
             jsonService = new JsonService("accounts.json");
+            securityService = new SecurityService();
         }
         public void NotifyAddButtonClicked()
         {
             if ((Name != "" && Name != null) && (Login != "" && Login != null)
                 && (Password != "" && Password != null))
             {
-                jsonService.WriteToFile(new Account(Name, Login, SecurityService.EncryptAES(Password)));
+                jsonService.WriteToFile(new Account(Name, Login, securityService.EncryptAES(Password)));
                 Name = null;
                 Login = null;
                 Password = null;
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         //Public Variables
         public string? Name
         {
             get => name;
-            set
-            {
-                this.name = value;
-                OnPropertyChanged(nameof(Name));
-            }
+            set => Set(ref name, value);
         }
         public string? Login
         {
             get => login;
-            set
-            {
-                this.login = value;
-                OnPropertyChanged(nameof(Login));
-            }
+            set => Set(ref login, value);
         }
         public string? Password
         {
             get => password;
-            set
-            {
-                this.password = value;
-                OnPropertyChanged(nameof(Password));
-            }
+            set => Set(ref password, value);
         }
     }
 }
