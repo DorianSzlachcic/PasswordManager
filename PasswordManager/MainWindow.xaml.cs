@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PasswordManager.BusinessLogic.ViewModels.Main;
+using PasswordManager.Dependencies;
 
 namespace PasswordManager
 {
@@ -26,7 +28,7 @@ namespace PasswordManager
         public MainWindow()
         {
             InitializeComponent();
-            viewModel = new MainWindowViewModel();
+            viewModel = Container.Instance.Resolve<MainWindowViewModel>();  
             DataContext = viewModel;
         }
        

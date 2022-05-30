@@ -6,17 +6,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordManager.BusinessLogic.Services.Database;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
     public class AccountsViewModel : BaseScreenViewModel
     {
-        private JsonService jsonService;
+        private ISqliteService sqliteService;
         private List<Account>? accounts;
-        public AccountsViewModel(IChangeScreenHandler handler) : base(handler)
+        public AccountsViewModel(IChangeScreenHandler handler, ISqliteService sqliteService) : base(handler)
         {
-            jsonService = new JsonService("accounts.json");
-            Accounts = jsonService.LoadFromFile();
+            this.sqliteService = sqliteService;
+            Accounts = sqliteService.LoadAccounts();
         }
 
         public List<Account>? Accounts {

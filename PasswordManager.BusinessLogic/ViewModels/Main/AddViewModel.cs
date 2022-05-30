@@ -7,6 +7,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordManager.BusinessLogic.Services.Database;
+using System.Windows.Input;
+using Spooksoft.VisualStateManager.Commands;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
@@ -16,20 +19,24 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
         private string? login;
         private string? name;
 
-        private JsonService jsonService;
-        private SecurityService securityService;
+        private ICommand addCommand;
 
-        public AddViewModel(IChangeScreenHandler handler) : base(handler)
+        private ISqliteService sqliteService;
+        private ISecurityService securityService;
+
+        public AddViewModel(IChangeScreenHandler handler, ISqliteService sqliteService, ISecurityService securityService):base(handler)
         {
-            jsonService = new JsonService("accounts.json");
-            securityService = new SecurityService();
+            this.sqliteService = sqliteService;
+            this.securityService = securityService;
+
+            addCommand = new AppCommand(obj => AddAccount());
         }
-        public void NotifyAddButtonClicked()
+        public void AddAccount()
         {
             if ((Name != "" && Name != null) && (Login != "" && Login != null)
                 && (Password != "" && Password != null))
             {
-                jsonService.WriteToFile(new Account(Name, Login, securityService.EncryptAES(Password)));
+                sqliteService.SaveAccount(new Account(Name, Login, securityService.EncryptAES(Password)));
                 Name = null;
                 Login = null;
                 Password = null;
@@ -51,6 +58,12 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
         {
             get => password;
             set => Set(ref password, value);
+        }
+
+        public ICommand AddCommand
+        {
+            get => addCommand;
+            set => Set(ref addCommand, value);
         }
     }
 }

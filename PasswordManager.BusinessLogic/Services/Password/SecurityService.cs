@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace PasswordManager.BusinessLogic.Services.Password
 {
-    internal class SecurityService
+    internal class SecurityService : ISecurityService
     {
         private static string key = "A!9HHhi%XjjYY4YP2@Nob009X";
 

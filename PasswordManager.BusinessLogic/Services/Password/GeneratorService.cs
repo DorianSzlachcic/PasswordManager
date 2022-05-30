@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.BusinessLogic.Services.Password
 {
-    internal class GeneratorService
+    internal class GeneratorService : IGeneratorService
     {
         private static bool upperCase = true, lowerCase = true, specialChars = true, numbers = true;
         private static int lenght = 10;

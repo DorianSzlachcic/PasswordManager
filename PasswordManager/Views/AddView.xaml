@@ -53,7 +53,7 @@
                 </ComboBox>
                 
 
-                <Button Height="20" Margin="5,30,5,5" FontSize="14">Add</Button>
+                <Button Height="20" Margin="5,30,5,5" FontSize="14" Command="{Binding AddCommand}">Add</Button>
                 <Button Height="20" Margin="5" FontSize="14">Cancel</Button>
             </StackPanel>
         </Border>

@@ -9,23 +9,16 @@ using PasswordManager.BusinessLogic.Models;
 
 namespace PasswordManager.BusinessLogic.Services.File
 {
-    internal class JsonService
+    public class JsonService : IJsonService
     {
-        private string path;
-
-        public JsonService(string filePath)
+        public void WriteToFile(Account account, string path)
         {
-            path = filePath;
-        }
-
-        public void WriteToFile(Account account)
-        {
-            List<Account> list = LoadFromFile();
+            List<Account> list = LoadFromFile(path);
             list.Add(account);
             System.IO.File.WriteAllText(path, JsonSerializer.Serialize(list));
         }
 
-        public List<Account> LoadFromFile()
+        public List<Account> LoadFromFile(string path)
         {
             if(System.IO.File.Exists(path))
             {

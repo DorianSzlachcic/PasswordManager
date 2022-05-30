@@ -1,11 +1,14 @@
 ﻿using Spooksoft.VisualStateManager.Commands;
+using Autofac;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PasswordManager.Dependencies;
+using PasswordManager.BusinessLogic.Services.File;
+using PasswordManager.BusinessLogic.Services.Password;
 
 namespace PasswordManager.BusinessLogic.ViewModels.Main
 {
@@ -17,9 +20,9 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
 
         public MainWindowViewModel()
         {
-            CurrentScreen = new StartViewModel(this);
-            ChangeToAccountsViewCommand = new AppCommand(obj => CurrentScreen = new AccountsViewModel(this));
-            ChangeToStartViewCommand = new AppCommand(obj => CurrentScreen = new StartViewModel(this));
+            CurrentScreen = Container.Instance.Resolve<StartViewModel>(new NamedParameter("handler", this));
+            ChangeToAccountsViewCommand = new AppCommand(obj => CurrentScreen = Container.Instance.Resolve<AccountsViewModel>(new NamedParameter("handler", this)));
+            ChangeToStartViewCommand = new AppCommand(obj => CurrentScreen = Container.Instance.Resolve<StartViewModel>(new NamedParameter("handler", this)));
         }
 
         //Public Variables
@@ -43,15 +46,15 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
         //IChangeScreenHandler implementation
         void IChangeScreenHandler.ChangeScreenToStartView()
         {
-            CurrentScreen = new StartViewModel(this);
+            CurrentScreen = Container.Instance.Resolve<StartViewModel>(new NamedParameter("handler", this));
         }
         void IChangeScreenHandler.ChangeScreenToAddView()
         {
-            CurrentScreen = new AddViewModel(this);
+            CurrentScreen = Container.Instance.Resolve<AddViewModel>(new NamedParameter("handler", this));
         }
         void IChangeScreenHandler.ChangeScreenToAccountsView()
         {
-            CurrentScreen = new AccountsViewModel(this);
+            CurrentScreen = Container.Instance.Resolve<AccountsViewModel>(new NamedParameter("handler", this));
         }
     }
 }

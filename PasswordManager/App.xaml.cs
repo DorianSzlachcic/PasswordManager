@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordManager.Dependencies;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,9 @@ namespace PasswordManager
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Container.BuildContainer(PasswordManager.BusinessLogic.Dependencies.Configuration.Configure);
+        }
     }
 }

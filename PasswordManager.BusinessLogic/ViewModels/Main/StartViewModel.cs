@@ -17,24 +17,24 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
         private List<Account>? accountsList;
         private string? generatedPassword;
 
-        private JsonService jsonService;
-        private GeneratorService generatorService;
+        private IJsonService jsonService;
+        private IGeneratorService generatorService;
 
         private ICommand changeToAddViewCommand;
         private ICommand generatorCommand;
 
         private void updateAccounts()
         {
-            Accounts = jsonService.LoadFromFile();
+            Accounts = jsonService.LoadFromFile("accounts.json");
         }
 
-        public StartViewModel(IChangeScreenHandler handler) :base(handler)
+        public StartViewModel(IChangeScreenHandler handler, IJsonService jsonService, IGeneratorService generatorService): base(handler)
         {
-            jsonService = new JsonService("accounts.json");
-            generatorService = new GeneratorService();
+            this.jsonService = jsonService;
+            this.generatorService = generatorService;
 
             GeneratorCommand = new AppCommand(obj => GeneratedPassword = generatorService.Generate());
-            ChangeToAddViewCommand = new AppCommand(obj => changeScreenHandler.ChangeScreenToAddView());
+            ChangeToAddViewCommand = new AppCommand(obj => handler.ChangeScreenToAddView());
 
             updateAccounts();
         }
