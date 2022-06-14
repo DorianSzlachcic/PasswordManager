@@ -34,7 +34,7 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
             this.generatorService = generatorService;
 
             GeneratorCommand = new AppCommand(obj => GeneratedPassword = generatorService.Generate());
-            ChangeToAddViewCommand = new AppCommand(obj => handler.ChangeScreenToAddView());
+            ChangeToAddViewCommand = new AppCommand(obj => handler.ChangeScreenToAddEditView());
 
             updateAccounts();
         }

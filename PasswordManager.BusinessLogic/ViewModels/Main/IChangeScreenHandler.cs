@@ -10,7 +10,8 @@ namespace PasswordManager.BusinessLogic.ViewModels.Main
     public interface IChangeScreenHandler
     {
         void ChangeScreenToStartView();
-        void ChangeScreenToAddView();
+        void ChangeScreenToAddEditView();
+        void ChangeScreenToAddEditView(int id);
         void ChangeScreenToAccountsView();
     }
 }

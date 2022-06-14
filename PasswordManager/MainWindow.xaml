@@ -18,10 +18,11 @@
         <Border Background="WhiteSmoke" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="0">
             <StackPanel>
                 <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <Button FontSize="25" Command="{Binding ChangeToStartViewCommand}">Start</Button>
-                </Border>
-                <Border Background="LightGray" BorderBrush="Gray" BorderThickness="1">
-                    <Button FontSize="25" Command="{Binding ChangeToAccountsViewCommand}">Accounts</Button>
+                    <StackPanel>
+                        <Button FontSize="25" Command="{Binding ChangeToStartViewCommand}">Start</Button>
+                        <Button FontSize="25" Command="{Binding ChangeToAccountsViewCommand}">Accounts</Button>
+                        <Button FontSize="25" Command="{Binding AddGroupCommand}">Add Group</Button>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>
@@ -34,7 +35,7 @@
                 <DataTemplate x:Name="accountsView" DataType="{x:Type viewmodels:AccountsViewModel}">
                     <views:AccountsView/>
                 </DataTemplate>
-                <DataTemplate x:Name="addView" DataType="{x:Type viewmodels:AddViewModel}">
+                <DataTemplate x:Name="addView" DataType="{x:Type viewmodels:AddEditViewModel}">
                     <views:AddView/>
                 </DataTemplate>
             </ContentControl.Resources>

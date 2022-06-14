@@ -7,11 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Grid.ColumnSpan="2" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+
+        <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
             <StackPanel Background="LightGray" Margin="4">
                 <Label HorizontalAlignment="Center" FontSize="20">Add account</Label>
                 <Label FontSize="16">Name</Label>
@@ -19,7 +16,8 @@
                 <Label FontSize="16">Login</Label>
                 <TextBox Margin="4" FontSize="14" Text="{Binding Login, Mode=TwoWay}"></TextBox>
                 <Label FontSize="16">Password</Label>
-                <TextBox Margin="4" FontSize="14" Text="{Binding Password, Mode=TwoWay}"></TextBox>
+                <PasswordBox Margin="4" FontSize="14"></PasswordBox>
+
                 <Label FontSize="16">Group</Label>
                 <ComboBox Margin="4" FontSize="14">
                     <ComboBoxItem IsSelected="True">None</ComboBoxItem>
@@ -53,8 +51,8 @@
                 </ComboBox>
                 
 
-                <Button Height="20" Margin="5,30,5,5" FontSize="14" Command="{Binding AddCommand}">Add</Button>
-                <Button Height="20" Margin="5" FontSize="14">Cancel</Button>
+                <Button Height="20" Margin="5,30,5,5" FontSize="14" Command="{Binding ConfirmCommand}">Confirm</Button>
+                <Button Height="20" Margin="5" FontSize="14" Command="{Binding CancelCommand}">Cancel</Button>
             </StackPanel>
         </Border>
     </Grid>

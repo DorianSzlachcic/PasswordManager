@@ -18,13 +18,14 @@ namespace PasswordManager.BusinessLogic.Dependencies
             containerBuilder.RegisterType<GeneratorService>().As<IGeneratorService>().SingleInstance();
             containerBuilder.RegisterType<SecurityService>().As<ISecurityService>().SingleInstance();
             containerBuilder.RegisterType<JsonService>().As<IJsonService>().SingleInstance();
-            containerBuilder.RegisterType<SqliteService>().As<ISqliteService>().SingleInstance();
+            containerBuilder.RegisterType<SqliteAccountService>().As<ISqliteAccountService>().SingleInstance();
+            containerBuilder.RegisterType<SqliteGroupService>().As<ISqliteGroupService>().SingleInstance();
 
 
             containerBuilder.RegisterType<MainWindowViewModel>();
             containerBuilder.RegisterType<StartViewModel>();
             containerBuilder.RegisterType<AccountsViewModel>();
-            containerBuilder.RegisterType<AddViewModel>();
+            containerBuilder.RegisterType<AddEditViewModel>();
         }
     }
 }
